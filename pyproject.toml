@@ -1,7 +1,7 @@
 [project]
 name = "2025-tvdi-pythonweb"
 version = "0.1.0"
-description = "Add your description here"
+description = "For class_職能發展學院_flaskWeb"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
