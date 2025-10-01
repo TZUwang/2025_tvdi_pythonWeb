@@ -1,70 +1,47 @@
-# AI Copilot 指南 - TVDI Python 機器學習課程專案
 
-## 專案概述
-這是職能發展學院 (TVDI) 的 Python 機器學習課程專案，主要用於教學目的。專案結構為課程導向，按課次組織內容。
+# AI Copilot 指南 - TVDI Python Web 課程專案
 
-## AI回應
-- 繁體中文
-- 回應,應該淺顯易懂
+## 專案架構與設計重點
+- **課程導向結構**：每個 lesson 目錄（如 `lesson1/`, `lesson2/`, `lesson3/`）對應一個教學單元，內容循序漸進，從基礎語法到進階應用。
+- **主程式與模組分離**：主程式通常以 `if __name__ == "__main__":` 開頭，計算/邏輯功能獨立為函數或模組（如 `tools.py`）。
+- **Flask 應用**：`main.py` 展示最小 Flask 網站，路由與回應皆有中文註解，適合教學。
+- **資料夾命名規則**：`lesson{n}_{m}.py`、`.ipynb`，對應課程進度與主題。
+- **中英文混合註解**：變數/函數名稱為英文，註解為繁體中文，強調教學易懂。
+- **多媒體資源**：`link/README.md` 記錄課程錄影與資源連結。
 
-## 專案架構與組織
-- 課程依節數規劃:
-  - 例如:'資料夾:lesson1資料夾','資料夾:lesson2'  
-- `link/` - 課程錄影連結與學習資源
-- `.python-version` - 固定使用 Python 3.10
-- `pyproject.toml` - 使用 uv 作為依賴管理工具，主要依賴 Flask
+## 依賴與開發環境
+- **Python 3.10**（由 `.python-version` 或 `pyproject.toml` 指定）
+- **依賴管理**：僅用 `uv`，安裝指令為 `uv install`，依賴於 `pyproject.toml`/`uv.lock`，勿用 pip/poetry。
+- **主要套件**：Flask、requests
+- **虛擬環境**：`.venv/` 已忽略於版控
 
-## 課程內容:
-    - 資料夾:lesson1(基礎python)
-    - 資料夾:lesson2(python function,class,module)
-
-## 開發環境配置
-- **Python 版本**: 3.10 (由 `.python-version` 指定)
-- **依賴管理**: 使用 `uv` (不是 pip/poetry)
-- **虛擬環境**: `.venv/` 目錄，已在版控中忽略
-- **主要依賴**: Flask >=3.1.2
-
-## 編碼約定與模式
-- **語言混用**: 程式碼註解使用繁體中文，如 `#呼叫calculate_sum()`
-- **函數命名**: 使用英文 snake_case，如 `calculate_sum()`
-- **除錯配置**: VS Code launch.json 配置為繁體中文介面
-- **檔案命名**: 課程檔案以 `lesson{n}_{m}.py` 或 `.ipynb` 格式命名
-
-## 開發工作流程
+## 典型開發流程
 ```bash
-# 安裝依賴 (使用 uv 而非 pip)
+# 安裝依賴
 uv install
-
-# 執行 Python 檔案
+# 執行單一課程腳本
 python lesson2/lesson2_1.py
-
-# 啟動 Jupyter notebook (lesson1)
+# 啟動 Jupyter notebook（互動教學）
 jupyter notebook lesson1/
+# 啟動 Flask 網站（教學範例）
+python main.py
 ```
 
-## VS Code 偵錯設定
-專案已配置中文版 VS Code 偵錯器：
-- 偵錯器名稱: "Python 偵錯工具: 目前檔案"
-- 執行當前檔案使用整合終端機
+## 重要設計與教學模式
+- **函數教學**：`lesson2/AGENTS.md`、`lesson2/README.md` 詳細說明函數定義、參數、回傳值、常見錯誤，並有多個教學範例。
+- **類別與物件導向**：`lesson2/類別與實體.md` 以多個範例（如計算機、銀行帳戶、學生管理、繼承）循序介紹 OOP 概念。
+- **工具模組**：如 `lesson3/tools.py`，封裝 API 資料取得與處理邏輯，主程式（如 `lesson3_3.py`）僅負責互動與流程控制。
+- **主程式慣例**：所有可執行腳本皆以 `if __name__ == "__main__":` 為入口，利於單元測試與模組重用。
+- **中文註解**：所有關鍵邏輯、流程、錯誤處理均有繁體中文註解，便於初學者理解。
 
-## 教學專案特色
-- **中英文混合**: 變數名稱為英文，註解為繁體中文
-- **課程導向結構**: 每個 lesson 目錄對應一個教學單元
-- **多媒體資源**: `link/README.md` 包含 YouTube 課程錄影連結
-- **漸進式學習**: lesson1 使用互動式 Notebooks，lesson2 轉為 Python scripts
+## VS Code 與偵錯
+- 偵錯器名稱：「Python 偵錯工具: 目前檔案」
+- 執行時使用整合終端機，介面建議設為繁體中文
 
-## 重要檔案模式
-- **主程式模式**: 使用 `if __name__ == "__main__":` 模式
-- **函數分離**: 計算邏輯與主程式分離，如 `calculate_sum()` 與 `main()`
-- **中文註解**: 在關鍵程式行加入中文說明，幫助學習理解
+## 其他注意事項
+- 僅用 uv 管理依賴，勿混用 pip/poetry
+- 程式碼應簡潔、註解清楚，符合教學導向
+- 新增教學內容時，請依 lesson 結構命名與分層
 
-## 課程資源管理
-- 每個上課日期在 `link/README.md` 中記錄對應的 YouTube 連結
-- 使用 Google Meet 進行線上授課
-- 課程內容按日期與時段 (上午/下午) 組織
-
-建議在處理此專案時：
-1. 保持中英文混合的註解風格
-2. 遵循課程導向的檔案命名規範
-3. 使用 uv 管理依賴，而非其他工具
-4. 考慮教學目的，程式碼應簡潔易懂
+---
+如需更深入設計規範，請參考 `lesson2/AGENTS.md`、`lesson2/類別與實體.md`、`lesson3/tools.py` 範例。

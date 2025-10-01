@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD 網頁樣板</title>
+    <!-- 簡易 RWD 樣式，適合教學 -->
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        nav {
+            margin: 1rem 0;
+            text-align: center;
+        }
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            header, footer {
+                padding: 0.5rem;
+            }
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頁首 -->
+    <header>
+        <h1>RWD 響應式網頁樣板</h1>
+        <p>這是一個適合教學的 RWD 基本範本</p>
+    </header>
+    <!-- 導覽列 -->
+    <nav>
+        <a href="#">首頁</a>
+        <a href="#">課程介紹</a>
+        <a href="#">聯絡我們</a>
+    </nav>
+    <!-- 主要內容區 -->
+    <main>
+        <h2>歡迎來到 TVDI Python Web 課程</h2>
+        <p>
+            本頁展示如何建立一個簡單且支援手機、平板、桌機的 RWD 響應式網頁。
+        </p>
+        <ul>
+            <li>自動適應不同裝置寬度</li>
+            <li>結構簡單，易於擴充</li>
+            <li>適合 Flask Jinja2 模板使用</li>
+        </ul>
+    </main>
+    <!-- 頁尾 -->
+    <footer>
+        &copy; 2025 TVDI Python Web 課程
+    </footer>
+</body>
+</html>
