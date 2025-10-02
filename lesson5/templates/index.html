@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD 網頁樣板</title>
+    <!-- 引入外部 CSS，使用 Flask 專用 url_for 連結 static/index.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <header>
+        <h1>RWD 響應式網頁樣板</h1>
+        <p>這是一個適合教學的 RWD 基本範本</p>
+    </header>
+    <!-- 導覽列，含標題與按鈕，支援 RWD -->
+    <nav class="navbar">
+        <div class="navbar-title">職能發展學院</div>
+        <div class="navbar-links">
+            <a href="#">首頁</a>
+            <a href="#">課程介紹</a>
+            <a href="#">聯絡我們</a>
+        </div>
+    </nav>
+    <!-- 主要內容區 -->
+    <main>
+        <h2>歡迎來到 TVDI Python Web 課程</h2>
+        <p>
+            本頁展示如何建立一個簡單且支援手機、平板、桌機的 RWD 響應式網頁。
+        </p>
+        <ul>
+            <li>自動適應不同裝置寬度</li>
+            <li>結構簡單，易於擴充</li>
+            <li>適合 Flask Jinja2 模板使用</li>
+        </ul>
+    </main>
+    <!-- 頁尾 -->
+    <footer>
+        &copy; 2025 TVDI Python Web 課程
+    </footer>
+</body>
+
+</html>
