@@ -108,6 +108,12 @@ ul {
     border-radius: 5px;
     padding: 0.5rem 0.75rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color);
 }
 
 .navbar-toggle .icon-bar {
@@ -116,10 +122,15 @@ ul {
     height: 2px;
     background-color: var(--dark-color);
     border-radius: 1px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .navbar-toggle .icon-bar+.icon-bar {
     margin-top: 4px;
+}
+
+.navbar-toggle:hover .icon-bar {
+    background-color: var(--primary-color);
 }
 
 /* --- 頁首 Header --- */
@@ -214,7 +225,7 @@ footer {
 
     /* 預設隱藏導覽列連結 */
     .navbar-links {
-        display: none;
+        display: flex;
         position: absolute;
         top: 100%;
         left: 0;
@@ -225,11 +236,17 @@ footer {
         gap: 1rem;
         padding: 1rem;
         box-shadow: var(--shadow-sm);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease-in-out;
     }
 
     /* 當選單被觸發時顯示 */
     .navbar-links.active {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     .navbar-links a {
