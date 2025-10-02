@@ -200,13 +200,14 @@ footer {
     }
 
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem;
     }
 
     .navbar-title {
-        margin-bottom: 0.2rem;
+        margin: 0;
         font-size: 1.3rem;
         padding-left: 2px;
     }
@@ -214,11 +215,16 @@ footer {
     /* 預設隱藏導覽列連結 */
     .navbar-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        background-color: var(--light-color);
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-        padding: 1.5rem 0 0.5rem 0.5rem;
+        padding: 1rem;
+        box-shadow: var(--shadow-sm);
     }
 
     /* 當選單被觸發時顯示 */
