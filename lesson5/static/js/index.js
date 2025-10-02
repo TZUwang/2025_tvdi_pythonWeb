@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('navbar-toggle');
     const links = document.getElementById('navbar-links');
     const navLinks = links ? links.getElementsByTagName('a') : [];
+    const navbar = document.querySelector('.navbar');
 
     // 設置選單項目的動畫延遲
     Array.from(navLinks).forEach((link, index) => {
