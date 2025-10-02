@@ -86,18 +86,21 @@ ul {
     font-weight: 500;
     padding: 0.4rem 1.1rem;
     border-radius: 6px;
-    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
     position: relative;
     z-index: 1;
+    border: 1px solid transparent;
 }
 
 .navbar-links a:hover,
 .navbar-links a:focus {
     color: var(--primary-darker);
-    background: rgba(0, 123, 255, 0.10);
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.08);
+    background: rgba(0, 123, 255, 0.08);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
     text-decoration: none;
     outline: none;
+    transform: translateY(-1px);
 }
 
 /* --- 漢堡選單按鈕 (預設隱藏) --- */
@@ -131,6 +134,20 @@ ul {
 
 .navbar-toggle:hover .icon-bar {
     background-color: var(--primary-color);
+}
+
+/* 漢堡選單動畫 */
+.navbar-toggle.active .icon-bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.navbar-toggle.active .icon-bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.navbar-toggle.active .icon-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
 }
 
 /* --- 頁首 Header --- */
@@ -247,6 +264,18 @@ footer {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+    }
+
+    .navbar-links a {
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        transition-delay: calc(var(--item-index, 0) * 0.1s);
+    }
+
+    .navbar-links.active a {
+        opacity: 1;
+        transform: translateX(0);
     }
 
     .navbar-links a {
