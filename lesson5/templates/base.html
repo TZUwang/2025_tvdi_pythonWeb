@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RWD 網頁樣板{% endblock %}</title>
+    <!-- 引入外部 CSS，使用 Flask 專用 url_for 連結 static/index.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+
+<body>
+    <!-- 導覽列，含標題與按鈕，支援 RWD -->
+    <nav class="navbar">
+        <div class="navbar-title">職能發展學院</div>
+        <!-- 漢堡選單按鈕，只在手機版顯示 -->
+        <button class="navbar-toggle" aria-label="開啟選單" id="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-links" id="navbar-links">
+            <a href="#">首頁</a>
+            <a href="#">課程介紹</a>
+            <a href="#">聯絡我們</a>
+        </div>
+    </nav>
+    
+    {% block content %}{% endblock %}
+
+    <!-- 頁尾 -->
+    <footer>
+        &copy; 2025 TVDI Python Web 課程
+    </footer>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>
