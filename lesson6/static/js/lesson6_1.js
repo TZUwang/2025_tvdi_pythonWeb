@@ -1,0 +1,1 @@
+console.log("我的JS成功執行了! 這是 lesson6_1的js檔案");

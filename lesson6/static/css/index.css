@@ -1,0 +1,305 @@
+/* --- :root 定義全域變數 --- */
+:root {
+    --primary-color: #007bff;
+    --primary-darker: #0056b3;
+    --dark-color: #343a40;
+    --light-color: #ffffff;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.07);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #f0f0f0;
+        --light-color: #2d2d2d;
+        --dark-color: #f0f0f0;
+        --border-color: #404040;
+        --shadow-sm: 0 2px 5px rgba(255, 255, 255, 0.05);
+        --shadow-md: 0 4px 12px rgba(255, 255, 255, 0.06);
+    }
+}
+
+/* --- 基本樣式 --- */
+body {
+    font-family: "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-darker);
+    text-decoration: underline;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+/* --- 按鈕樣式 Button --- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-darker);
+    text-decoration: none;
+    /* 覆蓋 a:hover 的底線 */
+}
+
+/* --- 導覽列 Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* 讓標題和連結左右分開 */
+    align-items: center;
+    /* 垂直置中 */
+    background-color: var(--light-color);
+    padding: 0.8rem 2rem;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    /* 讓導覽列固定在頂部 */
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+
+.navbar-links a {
+    margin: 0 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.4rem 1.1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    border: 1px solid transparent;
+}
+
+.navbar-links a:hover,
+.navbar-links a:focus {
+    color: var(--primary-darker);
+    background: rgba(0, 123, 255, 0.08);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
+    text-decoration: none;
+    outline: none;
+    transform: translateY(-1px);
+}
+
+/* --- 漢堡選單按鈕 (預設隱藏) --- */
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color);
+}
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--dark-color);
+    border-radius: 1px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.navbar-toggle .icon-bar+.icon-bar {
+    margin-top: 4px;
+}
+
+.navbar-toggle:hover .icon-bar {
+    background-color: var(--primary-color);
+}
+
+/* 漢堡選單動畫 */
+.navbar-toggle.active .icon-bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.navbar-toggle.active .icon-bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.navbar-toggle.active .icon-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* --- 頁首 Header --- */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-darker));
+    color: #ffffff;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* --- 主要內容 Main --- */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+main h2 {
+    margin-top: 0;
+    color: var(--dark-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+main p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* --- 課程資訊區塊 Course Info --- */
+.course-info {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: #f1f3f5;
+    /* 輕微調整背景色 */
+    border-left: 5px solid var(--primary-color);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.course-info h3 {
+    margin-top: 0;
+    color: var(--dark-color);
+}
+
+/* --- 頁尾 Footer --- */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+/* --- RWD 響應式設計 (手機版) --- */
+@media (max-width: 768px) {
+
+    /* 顯示漢堡選單按鈕 */
+    .navbar-toggle {
+        display: block;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .navbar-title {
+        margin: 0;
+        font-size: 1.3rem;
+        padding-left: 2px;
+    }
+
+    /* 預設隱藏導覽列連結 */
+    .navbar-links {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--light-color);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        box-shadow: var(--shadow-sm);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* 當選單被觸發時顯示 */
+    .navbar-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .navbar-links a {
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        transition-delay: calc(var(--item-index, 0) * 0.1s);
+    }
+
+    .navbar-links.active a {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .navbar-links a {
+        margin: 0.3rem 0;
+        font-size: 1.1rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 6px;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}

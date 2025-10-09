@@ -1,0 +1,24 @@
+{% extends "base1.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block header %}
+<h1>我的網站</h1>
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for user in user_list %}
+    <li>{{ user["name"] }}</li>
+    <li>{{ user["age"] }}</li>
+    <li>{{ user["gender"] }}</li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for user in user_list %}
+    <li>{{ user["age"] }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

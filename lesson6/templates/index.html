@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}首頁 - RWD 網頁樣板{% endblock %}
+{% block content %}
+    <!-- 頁首 -->
+    <header>
+        <h1>歡迎來到 TVDI Python 機器學習 課程</h1>
+        <p>這是一個適合教學的 RWD 基本範本</p>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main>
+        <h2>歡迎來到 TVDI Python Web 課程</h2>
+        <p>
+            本頁展示如何建立一個簡單且支援手機、平板、桌機的 RWD 響應式網頁。
+        </p>
+        <ul>
+            <li>自動適應不同裝置寬度</li>
+            <li>結構簡單，易於擴充</li>
+            <li>適合 Flask Jinja2 模板使用</li>
+        </ul>
+
+        <!-- 新增一個按鈕示範 -->
+        <div style="text-align:center; margin:2rem 0;">
+            <button class="btn">立即報名</button>
+        </div>
+
+        <!-- 新增的課程資訊區塊 -->
+        <section class="course-info">
+            <h3>課程資訊</h3>
+            <p>這裡會定期更新課程公告與相關資源連結。</p>
+            <ul>
+                <li><a href="#">開課通知：Python Web 開發實戰班</a></li>
+                <li><a href="#">學習資源：推薦的 Python 線上學習網站</a></li>
+                <li><a href="#">專案範例：查看 Github 上的課程專案</a></li>
+            </ul>
+        </section>
+    </main>
+{% endblock %}
