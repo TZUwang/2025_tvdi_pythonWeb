@@ -1,0 +1,239 @@
+/* 變數定義 */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5f6fa;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --error-color: #e74c3c;
+    --text-color: #2c3e50;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* 動畫效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 基礎卡片樣式 */
+.tree-card {
+    border: none;
+    border-radius: var(--border-radius);
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 
+        8px 8px 16px rgba(209, 209, 209, 0.6),
+        -8px -8px 16px rgba(255, 255, 255, 0.8);
+    transition: all 0.4s ease;
+    margin-bottom: 1.5rem;
+}
+
+.tree-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        12px 12px 20px rgba(209, 209, 209, 0.7),
+        -12px -12px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* 樹資訊區塊 */
+.tree-info {
+    position: relative;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(74, 144, 226, 0.05);
+    border-left: 4px solid var(--primary-color);
+}
+
+.tree-info h5 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* 卡片標題按鈕樣式 */
+.card-header .btn-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+}
+
+.card-header .btn-link:hover {
+    color: var(--primary-color);
+}
+
+.card-header .btn-link i {
+    transition: transform 0.3s ease;
+    margin-left: 5px;
+}
+
+/* 列表項目樣式 */
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #e9ecef;
+    margin-bottom: 0.5rem;
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    transition: all var(--transition-speed) ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.feature-item:hover {
+    background-color: var(--secondary-color);
+    transform: translateX(5px);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-item i {
+    margin-right: 12px;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+/* 監督式學習徽章 */
+.supervised-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 25px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);
+}
+
+.supervised-badge i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* 表單樣式 */
+.features-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.form-control {
+    border: 2px solid #e1e1e1;
+    border-radius: var(--border-radius);
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all var(--transition-speed);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+    background: white;
+}
+
+.btn-submit {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all var(--transition-speed);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-submit:hover {
+    background: #357abd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+}
+
+.btn-submit i {
+    margin-right: 8px;
+}
+
+/* 工具提示 */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed);
+    z-index: 1000;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* 提示框樣式 */
+.alert {
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.alert i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.alert-success {
+    background: rgba(46, 204, 113, 0.1);
+    color: var(--success-color);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .tree-card {
+        margin-bottom: 1rem;
+    }
+    
+    .features-form {
+        max-width: 100%;
+    }
+    
+    .supervised-badge {
+        width: 100%;
+        justify-content: center;
+    }
+}

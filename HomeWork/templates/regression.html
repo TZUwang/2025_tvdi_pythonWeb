@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}線性回歸 | 機器學習{% endblock %}
+{% block title %}線性回歸{% endblock %}
 
 {% block content %}
-<main>
-    <h2>線性回歸 (Linear Regression)</h2>
-    <p>
-        線性回歸是監督式學習中的一種基本預測模型。它旨在找出一個或多個自變數（特徵）與一個連續的因變數之間的線性關係。
-        目標是找到一條最佳擬合直線（或超平面），使其能夠在給定自變數的情況下，對因變數做出最準確的預測。
-    </p>
+<div class="container my-5">
+    <h1 class="text-center mb-4">線性回歸</h1>
     
-    <div class="chart-placeholder">
-        <p>這裡是圖表預留位置</p>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">什麼是線性回歸？</h5>
+                    <p class="card-text">
+                        線性回歸是一種基礎的統計學和機器學習方法，用於預測一個連續的目標變數。
+                        通過找出特徵（自變數）和目標（因變數）之間的線性關係，
+                        建立一個可以用於預測的數學模型。
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="button-container">
-        <a href="#" class="btn">開始分析</a>
-    </div>
-</main>
+</div>
 {% endblock %}

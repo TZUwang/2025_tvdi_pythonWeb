@@ -1,14 +1,18 @@
 /* --- :root 定義全域變數 --- */
 :root {
-    --primary-color: #007bff;
-    --primary-darker: #0056b3;
-    --dark-color: #343a40;
-    --light-color: #ffffff;
-    --bg-color: #f8f9fa;
-    --text-color: #333;
-    --border-color: #dee2e6;
-    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.07);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --primary-color: #4a90e2;
+    --secondary-color: #50c878;
+    --accent-color: #ffd700;
+    --background-color: #f8f9fa;
+    --text-color: #2c3e50;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --shadow-sm: 0 2px 5px var(--shadow-color);
+    --shadow-md: 0 4px 12px var(--shadow-color);
     --border-radius: 8px;
     --transition-speed: 0.3s;
 }
@@ -103,17 +107,30 @@ ul {
     position: relative;
     z-index: 1;
     border: 1px solid transparent;
+    text-decoration: none !important;
+    color: var(--text-color);
+    background-color: transparent;
 }
 
-.navbar-links a:hover,
-.navbar-links a:focus {
-    color: var(--primary-darker);
-    background: rgba(0, 123, 255, 0.08);
-    border-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.12);
-    text-decoration: none;
-    outline: none;
-    transform: translateY(-1px);
+.navbar-links a:hover {
+    color: var(--primary-color);
+}
+
+/* 當前頁面的按鈕樣式 - 提高特異性 */
+.navbar.navbar a.active,
+.navbar-links a.active,
+.navbar .navbar-links a.active {
+    background-color: var(--danger-color) !important;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+    border-color: var(--danger-color);
+}
+
+/* 確保hover時保持當前頁面的樣式 */
+.navbar.navbar a.active:hover,
+.navbar-links a.active:hover {
+    color: white !important;
+    background-color: #c82333 !important;
 }
 
 /* --- 漢堡選單按鈕 (預設隱藏) --- */
@@ -305,9 +322,10 @@ footer {
 }
 
 .navbar-links a.active {
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    border-color: var(--primary-color);
+    background-color: transparent; /* 移除背景色 */
+    color: var(--primary-color);    /* 將文字設為主題色 */
+    font-weight: 700;               /* 字體加粗 */
+    border-color: transparent;      /* 移除邊框 */
 }
 
 a.navbar-title:hover {

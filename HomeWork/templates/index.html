@@ -1,38 +1,23 @@
 {% extends "base.html" %}
-{% block title %}首頁 - RWD 網頁樣板{% endblock %}
+
+{% block title %}機器學習概述{% endblock %}
+
 {% block content %}
-    <!-- 頁首 -->
-    <header>
-        <h1>歡迎來到 TVDI Python 機器學習 課程</h1>
-        <p>這是一個適合教學的 RWD 基本範本</p>
-    </header>
-
-    <!-- 主要內容區 -->
-    <main>
-        <h2>歡迎來到 TVDI Python Web 課程</h2>
-        <p>
-            本頁展示如何建立一個簡單且支援手機、平板、桌機的 RWD 響應式網頁。
-        </p>
-        <ul>
-            <li>自動適應不同裝置寬度</li>
-            <li>結構簡單，易於擴充</li>
-            <li>適合 Flask Jinja2 模板使用</li>
-        </ul>
-
-        <!-- 新增一個按鈕示範 -->
-        <div style="text-align:center; margin:2rem 0;">
-            <button class="btn">立即報名</button>
+<div class="container my-5">
+    <h1 class="text-center mb-4">機器學習簡介</h1>
+    
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">什麼是機器學習？</h5>
+                    <p class="card-text">
+                        機器學習是人工智慧的一個分支，它專注於開發能夠從數據中學習和改進的系統。
+                        通過分析大量的數據，機器學習算法可以找出模式，並用這些模式來做出預測或決策。
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <!-- 新增的課程資訊區塊 -->
-        <section class="course-info">
-            <h3>課程資訊</h3>
-            <p>這裡會定期更新課程公告與相關資源連結。</p>
-            <ul>
-                <li><a href="#">開課通知：Python Web 開發實戰班</a></li>
-                <li><a href="#">學習資源：推薦的 Python 線上學習網站</a></li>
-                <li><a href="#">專案範例：查看 Github 上的課程專案</a></li>
-            </ul>
-        </section>
-    </main>
+    </div>
+</div>
 {% endblock %}
