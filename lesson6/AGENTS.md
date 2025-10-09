@@ -3,7 +3,7 @@
 ## Flask 網頁樣板使用預設的templates資料夾, CSS, js, image使用預設的static資料夾
 ## 若有修改網頁內的css, 請增加至網頁對應的css檔案內
 0,0 @@
-# Lesson 5: Flask 專案實作 - 待辦事項清單 (Todo List)
+# Lesson 6: Flask 專案實作 - 待辦事項清單 (Todo List)
 
 本單元將引導你從零開始建立一個完整的 Flask Web 應用程式：一個簡單的待辦事項清單 (Todo List) 網站。
 
@@ -20,7 +20,7 @@
 一個典型的 Flask 專案會包含以下結構：
 
 ```
-lesson5/
+lesson6/
 ├── main.py         # Flask 主程式
 ├── templates/
 │   └── index.html  # HTML 頁面樣板

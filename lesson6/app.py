@@ -2,15 +2,22 @@ from flask import Flask, render_template
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
+@app.route("/home")
+def home():
+    return render_template("index.html")
 
 @app.route("/") #下面要立即定義一個function
 def index():
     """根節點，呈現 index.html"""
     return render_template("index.html")
 
-@app.route("/machine")
-def machine():
-    return render_template("machine.html")
+@app.route("/regression")
+def regression():
+    return render_template("regression.html")
+
+@app.route("/knn")
+def knn():
+    return render_template("knn.html")
 
 @app.route("/lesson6_1")
 def lesson6_1():

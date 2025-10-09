@@ -12,7 +12,7 @@
 <body>
     <!-- 導覽列，含標題與按鈕，支援 RWD -->
     <nav class="navbar">
-        <div class="navbar-title">職能發展學院</div>
+        <a href="{{ url_for('home') }}" class="navbar-title">職能發展學院</a>
         <!-- 漢堡選單按鈕，只在手機版顯示 -->
         <button class="navbar-toggle" aria-label="開啟選單" id="navbar-toggle">
             <span class="icon-bar"></span>
@@ -20,9 +20,9 @@
             <span class="icon-bar"></span>
         </button>
         <div class="navbar-links" id="navbar-links">
-            <a href="#">首頁</a>
-            <a href="#">課程介紹</a>
-            <a href="#">聯絡我們</a>
+            <a href="{{url_for('index')}}" {% if request.endpoint == 'index' %}class="active"{% endif %}>機器學習</a>
+            <a href="{{url_for('regression')}}" {% if request.endpoint == 'regression' %}class="active"{% endif %}>線性回歸</a>
+            <a href="{{url_for('knn')}}" {% if request.endpoint == 'knn' %}class="active"{% endif %}>K近鄰分類</a>
         </div>
     </nav>
     

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}K近鄰分類 | 機器學習{% endblock %}
+
+{% block content %}
+<main>
+    <h2>K近鄰分類 (K-Nearest Neighbors)</h2>
+    <p>
+        K-近鄰演算法（KNN）是一種非參數、懶惰學習的監督式學習演算法，常用於分類和迴歸問題。
+        它的核心思想是：一個樣本的類別由其最近的 K 個鄰居的類別決定。這 K 個鄰居中哪個類別佔多數，該樣本就屬於哪個類別。
+    </p>
+
+    <div class="chart-placeholder">
+        <p>這裡是圖表預留位置</p>
+    </div>
+
+    <div class="button-container">
+        <a href="#" class="btn">開始分類</a>
+    </div>
+</main>
+{% endblock %}
