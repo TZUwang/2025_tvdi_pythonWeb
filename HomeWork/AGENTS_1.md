@@ -1,9 +1,9 @@
 ## 這是一個flask的專案
-## 專案使用uv 虛擬環境,如果要執行'python app.py', 請改為使用'uv run .\lesson5\python app.py'
+## 專案使用uv 虛擬環境,如果要執行'python app.py', 請改為使用'uv run .\HomeWork\python app.py'
 ## Flask 網頁樣板使用預設的templates資料夾, CSS, js, image使用預設的static資料夾
 ## 若有修改網頁內的css, 請增加至網頁對應的css檔案內
 0,0 @@
-# Lesson 6: Flask 專案實作 - 待辦事項清單 (Todo List)
+# HomeWork: Flask 專案實作 - 待辦事項清單 (Todo List)
 
 本單元將引導你從零開始建立一個完整的 Flask Web 應用程式：一個簡單的待辦事項清單 (Todo List) 網站。
 
@@ -119,7 +119,7 @@ if __name__ == '__main__':
     uv install flask
     ```
 
-2.  **啟動伺服器**：在 `lesson5` 資料夾下，執行主程式：
+2.  **啟動伺服器**：在 `HomeWork` 資料夾下，執行主程式：
     ```bash
     python main.py
     ```
