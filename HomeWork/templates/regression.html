@@ -4,21 +4,113 @@
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="text-center mb-4">線性回歸</h1>
-    
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="card">
+    <!-- 標題 -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">線性回歸</h1>
+        <p class="lead text-muted">探索變數之間的線性關係。</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- 演算法核心概念 -->
+            <div class="card info-card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">什麼是線性回歸？</h5>
+                    <h5 class="card-title fw-bold"><i class="fas fa-chart-line me-2 text-primary"></i>核心概念</h5>
                     <p class="card-text">
-                        線性回歸是一種基礎的統計學和機器學習方法，用於預測一個連續的目標變數。
-                        通過找出特徵（自變數）和目標（因變數）之間的線性關係，
-                        建立一個可以用於預測的數學模型。
+                        線性回歸是監督式學習中的一種基本預測模型。它的目標是找到一個最佳的線性方程式（一條直線），用來描述一個或多個自變數（特徵）與一個連續的因變數（目標）之間的關係。模型訓練完成後，可以用來預測新的、未見過的數據的目標值。
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <!-- 優點 -->
+        <div class="col-md-6 mb-4">
+            <div class="card details-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold"><i class="fas fa-plus-circle me-2 text-success"></i>優點</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>模型簡單：</strong> 容易理解和解釋，是許多複雜演算法的基礎。</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>計算效率高：</strong> 訓練速度快，即使在大型資料集上也是如此。</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>可解釋性強：</strong> 可以清楚地知道每個特徵對預測結果的影響程度。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 缺點 -->
+        <div class="col-md-6 mb-4">
+            <div class="card details-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold"><i class="fas fa-minus-circle me-2 text-danger"></i>缺點</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>對線性關係敏感：</strong> 只能捕捉變數間的線性關係，對非線性關係無能為力。</li>
+                        <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>對異常值敏感：</strong> 異常值（Outliers）會對模型產生較大的影響。</li>
+                        <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>多重共線性問題：</strong> 當特徵之間高度相關時，模型可能會不穩定。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 應用場景 -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <div class="card details-card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-center"><i class="fas fa-rocket me-2"></i>常見應用場景</h5>
+                    <div class="d-flex justify-content-around text-center mt-4">
+                        <div>
+                            <i class="fas fa-home fa-2x text-info"></i>
+                            <p class="mt-2">房價預測</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-chart-area fa-2x text-info"></i>
+                            <p class="mt-2">股市分析</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-thermometer-half fa-2x text-info"></i>
+                            <p class="mt-2">氣溫預測</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.info-card {
+    border-left: 5px solid var(--bs-primary);
+    background-color: #f8f9fa;
+}
+
+.details-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.details-card:hover {
+    transform: translateY(-5px);
+}
+
+.list-unstyled li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.list-unstyled .fas {
+    margin-top: 0.25rem;
+}
+</style>
 {% endblock %}

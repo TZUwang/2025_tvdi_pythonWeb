@@ -1,24 +1,93 @@
 {% extends "base.html" %}
 
-{% block title %}K近鄰分類{% endblock %}
+{% block title %}K近鄰分類法{% endblock %}
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="text-center mb-4">K近鄰分類</h1>
-    
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="card">
+    <!-- 標題 -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">K近鄰分類法(KNN)</h1>
+        <p class="lead text-muted">一種簡單卻強大的懶人學習演算法。</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- 演算法核心概念 -->
+            <div class="card info-card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">什麼是K近鄰分類？</h5>
+                    <h5 class="card-title fw-bold"><i class="fas fa-brain me-2 text-primary"></i>核心概念</h5>
                     <p class="card-text">
-                        K近鄰（K-Nearest Neighbors，KNN）是一種基於實例的機器學習方法，
-                        它不需要訓練模型，而是通過計算新數據點與訓練集中所有點的距離，
-                        選擇最近的K個鄰居進行投票，從而決定新數據點的分類。
+                        K近鄰 (K-Nearest Neighbors, KNN) 是一種基於實例的監督式學習演算法。它不做任何一般化的假設，而是儲存所有的訓練資料。當需要對新資料進行預測時，它會在新資料點周圍找到 K 個最接近的訓練資料點（即「鄰居」），然後根據這些鄰居的類別進行投票，將得票最多的類別指定為新資料的預測類別。
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <!-- 優點 -->
+        <div class="col-md-6 mb-4">
+            <div class="card details-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold"><i class="fas fa-thumbs-up me-2 text-success"></i>優點</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>簡單直觀：</strong> 演算法邏輯易於理解和實現。</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>無需訓練：</strong> KNN 屬於「懶人學習」，沒有獨立的訓練階段。</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>適應性強：</strong> 容易新增新的訓練資料，模型會自動適應。</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>多分類友好：</strong> 天然支持多類別分類問題。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 缺點 -->
+        <div class="col-md-6 mb-4">
+            <div class="card details-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold"><i class="fas fa-thumbs-down me-2 text-danger"></i>缺點</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>計算成本高：</strong> 預測時需要計算與所有訓練樣本的距離。</li>
+                        <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>對 K 值敏感：</strong> K 值的選擇對結果影響很大。</li>
+                        <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>維度災難：</strong> 在高維度空間中，距離的定義變得不那麼直觀。</li>
+                        <li><i class="fas fa-times-circle text-danger me-2"></i><strong>樣本不平衡問題：</strong> 對樣本分佈不均的資料集表現較差。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.info-card {
+    border-left: 5px solid var(--bs-primary);
+    background-color: #f8f9fa;
+}
+
+.details-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.details-card:hover {
+    transform: translateY(-5px);
+}
+
+.list-unstyled li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.list-unstyled .fas {
+    margin-top: 0.25rem;
+}
+</style>
 {% endblock %}

@@ -1,23 +1,107 @@
 {% extends "base.html" %}
 
-{% block title %}機器學習概述{% endblock %}
+{% block title %}機器學習概覽{% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
+<div class="hero-section text-center text-white">
+    <div class="container">
+        <h1 class="display-3 fw-bold">TVDI Python 機器學習</h1>
+        <p class="lead">發掘數據背後的力量，從線性回歸到複雜的分類模型。</p>
+    </div>
+</div>
+
 <div class="container my-5">
-    <h1 class="text-center mb-4">機器學習簡介</h1>
-    
+    <!-- 介紹 -->
+    <div class="row mb-5 justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h2 class="fw-bold">什麼是機器學習？</h2>
+            <p class="text-muted">
+                機器學習是人工智慧的一門科學，專注於開發能從數據中自動學習和改進的演算法。它使得電腦無需明確編程即可執行特定任務。
+            </p>
+        </div>
+    </div>
+
+    <!-- 模型卡片 -->
     <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">什麼是機器學習？</h5>
-                    <p class="card-text">
-                        機器學習是人工智慧的一個分支，它專注於開發能夠從數據中學習和改進的系統。
-                        通過分析大量的數據，機器學習算法可以找出模式，並用這些模式來做出預測或決策。
-                    </p>
+        <!-- 線性回歸 -->
+        <div class="col-md-4 mb-4">
+            <div class="card model-card h-100">
+                <div class="card-body text-center">
+                    <div class="icon-circle bg-primary text-white mb-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">線性回歸</h5>
+                    <p class="card-text">一種預測連續數值（如房價、氣溫）的基礎監督式學習模型。</p>
+                    <a href="{{ url_for('regression') }}" class="btn btn-outline-primary stretched-link">深入了解</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- K近鄰分類 -->
+        <div class="col-md-4 mb-4">
+            <div class="card model-card h-100">
+                <div class="card-body text-center">
+                    <div class="icon-circle bg-success text-white mb-3">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">K近鄰分類</h5>
+                    <p class="card-text">一種簡單直觀的分類演算法，透過鄰近資料點的類別來進行預測。</p>
+                    <a href="{{ url_for('knn') }}" class="btn btn-outline-success stretched-link">深入了解</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 決策樹分類 -->
+        <div class="col-md-4 mb-4">
+            <div class="card model-card h-100">
+                <div class="card-body text-center">
+                    <div class="icon-circle bg-info text-white mb-3">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">決策樹分類</h5>
+                    <p class="card-text">一種模仿人類決策過程的樹狀模型，具有良好的可解釋性。</p>
+                    <a href="{{ url_for('decision_tree') }}" class="btn btn-outline-info stretched-link">深入了解</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+.hero-section {
+    background: linear-gradient(45deg, #4a90e2, #50e3c2);
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+}
+
+.model-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.model-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+</style>
 {% endblock %}
