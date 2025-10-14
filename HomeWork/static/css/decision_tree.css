@@ -1,20 +1,23 @@
 /* 變數定義 */
 :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #f5f6fa;
-    --success-color: #2ecc71;
-    --warning-color: #f1c40f;
-    --error-color: #e74c3c;
-    --text-color: #2c3e50;
-    --border-radius: 8px;
-    --transition-speed: 0.3s;
+    --primary-color: #007bff; /* Bootstrap Primary Blue */
+    --secondary-color: #6c757d;
+    --success-color: #198754; /* Bootstrap Success Green */
+    --danger-color: #dc3545; /* Bootstrap Danger Red */
+    --light-gray: #f8f9fa;
+    --dark-gray: #343a40;
+    --text-color: #212529;
+    --border-color: #dee2e6;
+    --border-radius: .75rem;
+    --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.07);
+    --transition-speed: 0.3s ease;
 }
 
 /* 動畫效果 */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
@@ -23,189 +26,148 @@
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* 基礎卡片樣式 */
-.tree-card {
-    border: none;
+/* Hero Section */
+.hero-section-tree {
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    color: white;
+    padding: 3rem 1rem;
+    margin-bottom: 3rem;
+}
+
+/* 通用卡片樣式 */
+.info-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    box-shadow: 
-        8px 8px 16px rgba(209, 209, 209, 0.6),
-        -8px -8px 16px rgba(255, 255, 255, 0.8);
-    transition: all 0.4s ease;
+    box-shadow: var(--box-shadow);
     margin-bottom: 1.5rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
-.tree-card:hover {
+.info-card:hover {
     transform: translateY(-5px);
-    box-shadow: 
-        12px 12px 20px rgba(209, 209, 209, 0.7),
-        -12px -12px 20px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.1);
 }
 
-/* 樹資訊區塊 */
-.tree-info {
-    position: relative;
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    background-color: rgba(74, 144, 226, 0.05);
-    border-left: 4px solid var(--primary-color);
+.info-card-body {
+    padding: 1.5rem;
 }
 
-.tree-info h5 {
-    color: var(--primary-color);
-    font-weight: 600;
+.card-title-main {
+    font-weight: 700;
+    color: var(--dark-gray);
     margin-bottom: 1rem;
 }
 
-/* 卡片標題按鈕樣式 */
-.card-header .btn-link {
-    color: var(--text-color);
-    text-decoration: none;
+/* 可收合區塊頭部 */
+.info-card .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+}
+
+.btn-collapse {
+    background: none;
+    border: none;
+    color: var(--dark-gray);
     font-weight: 600;
     width: 100%;
     text-align: left;
-    padding: 0.25rem 0;
-    transition: color 0.3s ease;
-}
-
-.card-header .btn-link:hover {
-    color: var(--primary-color);
-}
-
-.card-header .btn-link i {
-    transition: transform 0.3s ease;
-    margin-left: 5px;
-}
-
-/* 列表項目樣式 */
-.feature-item {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
     display: flex;
     align-items: center;
-    padding: 0.8rem 1.2rem;
-    border: 1px solid #e9ecef;
-    margin-bottom: 0.5rem;
-    border-radius: var(--border-radius);
-    background-color: #fff;
-    transition: all var(--transition-speed) ease-in-out;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    justify-content: space-between;
 }
 
-.feature-item:hover {
-    background-color: var(--secondary-color);
-    transform: translateX(5px);
-    border-left: 4px solid var(--primary-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+.btn-collapse .fa-chevron-down {
+    transition: transform var(--transition-speed);
 }
 
-.feature-item i {
-    margin-right: 12px;
-    color: var(--primary-color);
-    font-size: 1.1em;
+.btn-collapse[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* 列表樣式 */
+.list-group-item {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item i {
+    font-size: 1.1rem;
 }
 
 /* 監督式學習徽章 */
-.supervised-badge {
+.badge-supervised, .badge-unsupervised {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 25px;
-    font-weight: 500;
-    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
-.supervised-badge i {
-    margin-right: 10px;
-    font-size: 1.2em;
+.badge-supervised {
+    background-color: rgba(0, 123, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.badge-unsupervised {
+    background-color: rgba(108, 117, 125, 0.1);
+    color: var(--secondary-color);
 }
 
 /* 表單樣式 */
-.features-form {
-    max-width: 400px;
-    margin: 0 auto;
+.features-form .form-control {
+    border-width: 2px;
     padding: 1rem;
 }
 
-.form-control {
-    border: 2px solid #e1e1e1;
-    border-radius: var(--border-radius);
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all var(--transition-speed);
-}
-
-.form-control:focus {
+.features-form .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
-    background: white;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
 }
 
-.btn-submit {
-    background: var(--primary-color);
+.btn-primary-submit {
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     border-radius: var(--border-radius);
-    font-weight: 500;
-    transition: all var(--transition-speed);
-    width: 100%;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.btn-submit:hover {
-    background: #357abd;
+.btn-primary-submit:hover {
+    background-color: #0056b3;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
 }
-
-.btn-submit i {
-    margin-right: 8px;
-}
-
-
 
 /* 提示框樣式 */
-.alert {
-    border: none;
-    border-radius: var(--border-radius);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-}
-
-.alert i {
-    margin-right: 10px;
-    font-size: 1.2em;
-}
-
 .alert-success {
-    background: rgba(46, 204, 113, 0.1);
+    background-color: rgba(25, 135, 84, 0.1);
     color: var(--success-color);
+    border: 1px solid rgba(25, 135, 84, 0.2);
 }
 
 /* 響應式設計 */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
+    .hero-section-tree {
+        padding: 2rem 1rem;
     }
-    
-    .tree-card {
-        margin-bottom: 1rem;
-    }
-    
-    .features-form {
-        max-width: 100%;
-    }
-    
-    .supervised-badge {
-        width: 100%;
-        justify-content: center;
+
+    .info-card-body {
+        padding: 1rem;
     }
 }
