@@ -42,5 +42,5 @@
 
 /* 關鍵：當答案區塊擁有 'visible' 這個 class 時，它會被顯示出來 */
 .answer-content.visible {
-    display: block;
+    display: block; /* 當 JavaScript 加上 .visible 後，這行會覆寫 display: none，讓區塊顯示出來 */
 }
