@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% block title %}職能發展學院-機器學習{% endblock %}
+
+
 {% block head %}
 {{ super() }} {# 優先執行繼承父類別的 head 內容 若沒有super則會覆蓋原本的內容 #}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
@@ -114,6 +117,23 @@
                 <div class="action-button">
                     <a href="{# url_for('knn') #}" class="btn-primary">立即體驗 KNN 分類 →</a>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-section">
+        <h2>為什麼選擇互動式學習？</h2>
+        <div class="features">
+            <div class="feature-item">
+                <h4>視覺化理解</h4>
+                <p>透過圖表直觀呈現演算法運作過程，將抽象概念具象化</p>
+            </div>
+            <div class="feature-item">
+                <h4>即時互動</h4>
+                <p>調整參數立即看到結果變化，深入理解參數對模型的影響</p>
+            </div>
+            <div class="feature-item">
+                <h4>真實資料</h4>
+                <p>使用 scikit-learn 經典資料集，體驗真實世界的機器學習應用</p>
             </div>
         </div>
     </div>
