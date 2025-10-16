@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a href="{{url_for('knn')}}" {% if request.endpoint == 'knn'%}class="active"{% endif %}>k近鄰分類</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{url_for('homework2')}}" {% if request.endpoint=='homework2' %}class="active" {% endif %}>作業2</a>
+                </li>
             </ul>
             <!-- 手機版導覽切換按鈕 -->
             <button class="nav-toggle" aria-label="顯示導覽選單">
