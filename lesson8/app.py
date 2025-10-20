@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,jsonify
 
 app = Flask(__name__)
 
@@ -17,6 +17,13 @@ def regression():
 @app.route("/test")
 def test():
     return render_template("test.html")
+
+@app.route("/api/regression/data")
+def regression_data():
+    return jsonify({
+        "success": True,
+        "erroe": "NO ERROR",
+    })
 
 
 def main():
