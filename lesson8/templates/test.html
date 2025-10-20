@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>範例1</title>
+</head>
+
+<body>
+    <h1 id="title">這是標題</h1>
+    <button id="myButton">點我改變標題</button>
+{#script 寫在body最後 程式由上而下執行 所以先前指令EX:按鈕 h1都已經被製造執行 js才能實行 #}
+{#document是window全域物件 #}
+{#若script放在head區 則要加入監聽事件 監聽所有DOM都載入完成後才執行 才不會出錯#}
+    <script> 
+        document.addEventListener('DOMContentLoaded', function () {
+            const titleElement = document.querySelector('#title');
+            const buttonElement = document.querySelector('#myButton');
+
+            buttonElement.addEventListener('click', function () {
+                titleElement.textContent = '標題被更改了';
+            })
+        })
+    </script>
+</body>
+</html>
