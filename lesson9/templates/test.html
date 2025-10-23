@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>範例1</title>
+</head>
+
+<body>
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="{{url_for('static', filename='vendor/chart.js/chart.umd.js')}}"></script> {#不須連網 利用自己下載的套件#}
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
+<!-- {#script 寫在body最後 程式由上而下執行 所以先前指令EX:按鈕 h1都已經被製造執行 js才能實行 #}
+{#document是window全域物件 #}
+{#若script放在head區 則要加入監聽事件 監聽所有DOM都載入完成後才執行 才不會出錯#}
+    <script> 
+        document.addEventListener('DOMContentLoaded', function () {
+            const titleElement = document.querySelector('#title');
+            const buttonElement = document.querySelector('#myButton');
+
+            buttonElement.addEventListener('click', function () {
+                titleElement.textContent = '標題被更改了';
+            })
+        })
+    </script> -->
