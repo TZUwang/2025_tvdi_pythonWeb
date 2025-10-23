@@ -27,6 +27,10 @@ def regression():
 def test():
     return render_template("test.html")
 
+@app.route("/test1")
+def test1():
+    return render_template("test1.html")
+
 @app.route("/api/regression/data")
 def regression_data(): #建立web API的節點-json格式
     """線性迴歸 API - 使用California房價資料集（簡化版）"""
