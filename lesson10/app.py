@@ -120,7 +120,17 @@ def regression_data(): #建立web API的節點-json格式
             }, 500
         )
 
-    
+@app.route("/api/regression/predict")
+def regression_predict():
+    """線性迴歸 API - 預測房價"""
+    response = {
+        "success": True,
+        "prediction":{
+            "price": 100,
+            "unit": "萬美元"
+        }
+    }
+    return jsonify(response) #後端使用jsonify將Python的字典物件轉換成一個JSON格式的字串 讓前端(fetch)可以讀取
 
 def main():
     """啟動應用（教學用：啟用 debug 模式）"""
