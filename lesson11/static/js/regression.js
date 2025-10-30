@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function loadRegressionData() { //使用await來等待 必須使用async function非同步函式
     showLoading(true); //展示loading(功能可重複使用)
     try { //若嘗試成功 則執行下面的程式碼
-        const response = await fetch('/api/regression/data') //await 等待fetch回傳
+        const response = await fetch('/regression/api/data') //await 等待fetch回傳
         if (!response.ok) { //判斷回傳是否成功 若不成功則拋出錯誤
             throw new Error(`網路出現問題:${response.statusText}`)
         }
@@ -215,7 +215,7 @@ async function predictPrice(rooms) {
         return;
     }
     try {
-        const response = await fetch(`/api/regression/predict?rooms=${rooms}`)
+        const response = await fetch(`/regression/api/predict?rooms=${rooms}`)
         const data = await response.json() //await 等待response.json()回傳
         if (data.success) {
             //更新預測結果
