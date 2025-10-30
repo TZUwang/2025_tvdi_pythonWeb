@@ -1,12 +1,25 @@
-from flask import Blueprint, render_template
+from flask import Blueprint,render_template,jsonify
+from sklearn.datasets import load_iris
 
 knn_bp = Blueprint(
-    "knn", # 藍圖的名稱
+    'knn',
     __name__,
-    url_prefix="/knn", # 藍圖的網址
-    template_folder="../static", #當使用者訪問 /knn/knn_index
+    url_prefix='/knn',
+    template_folder='../templates',
+    static_folder='../static'
 )
 
-@knn_bp.route("/knn_index")
+@knn_bp.route('/knn_index')
 def knn_index():
-    return render_template("knn.html")
+    return render_template('knn.html')
+
+@knn_bp.route('/api/data')
+def knn_data():
+    """knn 分類 API - 使用鳶尾花資料集"""
+    iris = load_iris()
+    print(iris)
+    return jsonify(
+        {
+            'success': True
+        }
+    )
