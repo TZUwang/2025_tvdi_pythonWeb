@@ -43,6 +43,9 @@ async function loadRegressionData() { //使用await來等待 必須使用async f
         //更新評估指標
         updateMetrics(data.metrics)
 
+        //更新模型資訊
+        updateModelInfo(data.description)
+
     } catch (error) { //若嘗試失敗 則執行下面的程式碼
         showError(error.message) //顯示錯誤(可以重複使用)
     } finally { //不論成功或失敗都會執行
@@ -93,16 +96,16 @@ function renderChart(data) {
                 {
                     label: '訓練資料',
                     data: trainData,
-                    backgroundColor: 'rgba(102, 126, 234, 0.6)', //點的顏色
-                    borderColor: 'rgba(102, 126, 234, 1)', //點的邊框顏色
+                    backgroundColor: '#48ff009f', //點的顏色
+                    borderColor: '#48ff00', //的邊框顏色
                     pointRadius: 6, //點的大小
                     pointHoverRadius: 8 //滑鼠滑過時點的大小
                 },
                 {
                     label: '測試資料集',
                     data: testData,
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: '#2600ff9c',
+                    borderColor: '#2600ff',
                     pointRadius: 6,
                     pointHoverRadius: 8
                 },
@@ -110,7 +113,7 @@ function renderChart(data) {
                     label: '迴歸線',
                     data: regressionLine,
                     type: 'line',
-                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderColor: '#ff0000',
                     borderWidth: 3,
                     fill: false,
                     pointRadius: 0,
@@ -266,6 +269,15 @@ function updateMetrics(metrics) {
     } else {
         r2Element.style.color = '#dc3545';
     }
+}
+
+function updateModelInfo(description) {
+    console.table(description)
+    document.getElementById('dataset-name').textContent = description.dataset
+    document.getElementById('total-samples').textContent = description.samples
+    document.getElementById('train-size').textContent = description.train_size
+    document.getElementById('test-size').textContent = description.test_size
+    document.getElementById('target-name').textContent = description.target_name
 }
 
 // 定義一個名為 showLoading 的函式，它接受一個參數 show

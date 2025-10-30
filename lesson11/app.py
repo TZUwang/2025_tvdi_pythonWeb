@@ -5,8 +5,12 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 import numpy as np
+from knn.app import knn_bp
+
+
 
 app = Flask(__name__)
+app.register_blueprint(knn_bp) #註冊藍圖
 
 # 自定義JSON序列化設定
 app.json.ensure_ascii = False
@@ -15,21 +19,9 @@ app.json.ensure_ascii = False
 def index():
     return render_template("index.html")
 
-@app.route("/knn")
-def knn():
-    return render_template("knn.html")
-
 @app.route("/regression")
 def regression():
     return render_template("regression.html")
-
-@app.route("/test")
-def test():
-    return render_template("test.html")
-
-@app.route("/test1")
-def test1():
-    return render_template("test1.html")
 
 @app.route("/api/regression/data")
 def regression_data(): #建立web API的節點-json格式
@@ -160,7 +152,7 @@ def regression_predict():
             }
         }
         return jsonify(response)
-    except Exception as error:
+    except Exception as e:
         return jsonify({
             "success": False,
             "error": str(e)
