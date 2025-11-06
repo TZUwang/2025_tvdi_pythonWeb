@@ -1,6 +1,5 @@
-
 let currentK = 5;
-let modelData = null; //原本是區域變數 要在其他地方使用 用let宣告全域變數 能重新賦予值
+let modelData = null;
 let targetNames = null;
 let featureNames = null;
 let chart = null;
@@ -16,6 +15,19 @@ const classColors = [
 document.addEventListener('DOMContentLoaded', function () {
     // 固定使用花瓣長度(2)和花瓣寬度(3)
     loadKnnData()
+
+    //綁定K值slider事件
+    const kSlider = document.getElementById('k-slider')
+    const kValue = document.getElementById('k-value')
+
+    kSlider.addEventListener('input', function () { //input滑鼠拖動滑桿移動就觸發
+        kValue.textContent = this.value //this代表觸發這事件的元素(kSlider發出來的值)
+    })
+
+    kSlider.addEventListener('change', function () { //change滑鼠拖動並釋放滑桿才觸發
+        currentK = this.value
+        loadKnnData()
+    })
 })
 
 async function loadKnnData() {
@@ -31,6 +43,13 @@ async function loadKnnData() {
 
             // 繪制圖表
             renderChart(data)
+
+            //更新評估指標
+            updateMetrics(data.metrics)
+
+            // 更新模型資訊
+            updateModelInfo(data.description, data.k_neighbors)
+
         } else {
             showError(data.error)
         }
@@ -48,15 +67,18 @@ function renderChart(data) {
     //取得canvas的context
     const ctx = document.getElementById("knnChart").getContext('2d')
 
+
     //如果圖表已經存在,先銷毀
     if (chart) {
         chart.destroy()
     }
+
     // 準備資料集 - 按類別分組
     const datasets = []
     const numClasses = data.target_names.length
 
-    // 訓練資料(按類別分組)
+
+    // 訓練資料(按類別)
     for (let classIdx = 0; classIdx < numClasses; classIdx++) {
 
         const trainDataForClass = data.data.train.x.map((x, i) => ({
@@ -64,6 +86,7 @@ function renderChart(data) {
             y: data.data.train.y[i],
             label: data.data.train.labels[i]
         })).filter(point => point.label == classIdx)
+
 
         if (trainDataForClass.length > 0) {
             datasets.push({
@@ -79,25 +102,24 @@ function renderChart(data) {
         }
 
     }
+    // 測試資料(按類別和預測結果)
 
-    // 測試資料(按類別分組和預測結果)
-    for (let classIdx = 0; classIdx < numClasses; classIdx++) { //迴圈處理每個類別 classIdx為類別的索引
-        const testDataForClass = data.data.test.x.map((x, i) => ({ //
+    for (let classIdx = 0; classIdx < numClasses; classIdx++) {
+        const testDataForClass = data.data.test.x.map((x, i) => ({
             x: x,
             y: data.data.test.y[i],
             label: data.data.test.labels[i],
             prediction: data.data.test.predictions[i]
         })).filter(point => point.label == classIdx)
 
-
-        // 1. 處理預測正確的點
         if (testDataForClass.length > 0) {
-            const correctPredictions = testDataForClass.filter( //用filter過濾出預測正確的點
-                point => point.label === point.prediction //判斷標籤是否等於預測結果
+            //正確預測
+            const correctPredictions = testDataForClass.filter(
+                point => point.label === point.prediction
             )
 
-            if (correctPredictions.length > 0) { //如果有預測正確的點
-                datasets.push({ //將預測正確的點加入到datasets
+            if (correctPredictions.length > 0) {
+                datasets.push({
                     label: `${data.target_names[classIdx]}(測試-正確)`,
                     data: correctPredictions,
                     backgroundColor: classColors[classIdx].bg,
@@ -109,13 +131,13 @@ function renderChart(data) {
                 })
             }
 
-            // 2. 處理預測錯誤的點
-            const wrongPredictions = testDataForClass.filter( //用filter過濾出預測錯誤的點
-                point => point.label !== point.prediction //判斷標籤是否不等於預測結果
+            //錯誤預測
+            const wrongPredictions = testDataForClass.filter(
+                point => point.label !== point.prediction
             )
 
-            if (wrongPredictions.length > 0) { //如果有預測錯誤的點
-                datasets.push({ //將預測錯誤的點加入到datasets
+            if (wrongPredictions.length > 0) {
+                datasets.push({
                     label: `${data.target_names[classIdx]}(測試-錯誤)`,
                     data: wrongPredictions,
                     backgroundColor: 'rgba(255, 0, 0, 0.6)',
@@ -129,31 +151,63 @@ function renderChart(data) {
         }
     }
 
+
     // 建立圖表
     chart = new Chart(ctx, {
         type: 'scatter',
-        data: { datasets: datasets }, //他要求的屬性 有6組資料
+        data: { datasets: datasets },
         options: {
-            responsive: true, //自適應
-            maintainAspectRatio: false,//是否等比例
+            responsive: true,
+            maintainAspectRatio: false,
+            onClick: function (evt, activeElements) { //activeElements 是一個陣列，包含了滑鼠指標下方所有被偵測到的圖表元素
+                //點擊資料點(標記)時觸發
+                if (activeElements.length > 0) { //確保只有在使用者確實點擊到一個資料點
+                    const element = activeElements[0] //取得被點擊到的第一個元素
+                    const datasetIndex = element.datasetIndex
+                    const index = element.index
+                    const dataset = chart.data.datasets[datasetIndex]
+                    const point = dataset.data[index] //取得代表該點所有資訊的 point 物件
+
+                    // 判斷是訓練資料還是測試資料
+                    const datasetType = dataset.label.includes('訓練') ? 'train' : 'test'; //檢查資料集的標籤是否包含 "訓練"來判斷被點擊的點是屬於「訓練資料」還是「測試資料」
+                    showClassificationResult(point, datasetType, index) //將前面獲取到的point物件（包含座標、標籤等）、datasetType以及index作為參數傳入
+                }
+            },
             plugins: {
                 title: {
                     display: true,
-                    text: `KNN 分類視覺化(k =${data.k})`,
+                    text: `KNN 分類視覺化(k=${data.k_neighbors})`,
                     font: {
                         size: 18,
                         weight: 'bold'
                     },
                     padding: 20
                 },
-                legend: { //圖例
+                legend: {
                     display: true,
                     position: 'top',
                     labels: {
-                        uesPoints: true,
+                        usePointStyle: true,
                         padding: 12,
                         font: {
-                            size: 11,
+                            size: 11
+                        },
+                        filter: function (item, chart) {
+                            //只顯示訓練資料的圖例
+                            return item.text.includes('訓練')
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const label = context.dataset.label || '';
+                            const x = context.parsed.x.toFixed(2);
+                            const y = context.parsed.y.toFixed(2);
+                            return `${label}:花瓣 (${x}cm x ${y}cm)`;
+                        },
+                        afterLabel: function (context) {
+                            return '💡 點擊查看詳細資訊';
                         }
                     }
                 }
@@ -169,7 +223,7 @@ function renderChart(data) {
                         }
                     },
                     grid: {
-                        color: 'rgba(0, 0, 0, 0.05)'
+                        color: 'rgba(0,0,0,0.05)'
                     }
                 },
                 y: {
@@ -188,10 +242,81 @@ function renderChart(data) {
             },
             animation: {
                 duration: 800,
-                easing: 'easeInOutQuad'
+                easing: 'easeInOutQuart'
             }
         }
     })
+
+
+}
+
+//更新評估指標
+function updateMetrics(metrics) {
+    //console.table(metrics)
+    const accuracy = (metrics.accuracy * 100).toFixed(1)
+    const accuracyElement = document.getElementById('accuracy')
+    accuracyElement.textContent = `${accuracy}%`
+
+    //準確率顏色提示
+    if (metrics.accuracy >= 0.95) {
+        accuracyElement.style.color = '#28a745'
+    } else if (accuracy >= 0.8) {
+        accuracyElement.style.color = '#ffc107'
+    } else {
+        accuracyElement.style.color = '#dc3545'
+    }
+
+}
+
+//更新模型資訊
+function updateModelInfo(description, k_neighbors) {
+    document.getElementById('dataset-name').textContent = description.dataset
+    document.getElementById('total-samples').textContent = description.samples
+    document.getElementById('train-size').textContent = description.train_size
+    document.getElementById('test-size').textContent = description.test_size
+    document.getElementById('num-classes').textContent = description.classes
+    document.getElementById('current-k').textContent = k_neighbors
+}
+
+// 顯示分類結果
+function showClassificationResult(dataPoint, datasetType, index) {
+    const container = document.getElementById('classification-result')
+    // 取得特徵值
+    const featureX = dataPoint.x;
+    const featureY = dataPoint.y;
+    const actualLabel = dataPoint.label;
+    const prediction = dataPoint.prediction !== undefined ? dataPoint.prediction : actualLabel
+
+    //判斷是否預測正確
+    const isCorrect = actualLabel === prediction
+
+    //建立HTML
+    const html = `
+        <div class="feature-display">
+            <div class="feature-item">
+                <div class="label">${featureNames[2]}</div>
+                <div class="value">${featureX.toFixed(2)} cm</div>
+            </div>
+            <div class="feature-item">
+                <div class="label">${featureNames[3]}</div>
+                <div class="value">${featureY.toFixed(2)} cm</div>
+            </div>
+        </div>
+        <div class="result-display">
+            <div class="actual-label">實際品種</div>
+            <div class="species-name">${targetNames[actualLabel]}</div>
+            ${datasetType === 'test' ? `
+                <div class="prediction-status ${isCorrect ? 'correct' : 'wrong'}">
+                    ${isCorrect ? '✓ 模型預測正確！' : '✗ 模型預測為：' + targetNames[prediction]}
+                </div>
+            ` : `
+                <div class="prediction-status" style="opacity: 0.7;">
+                    訓練資料
+                </div>
+            `}
+        </div>
+    `
+    container.innerHTML = html
 }
 
 // 顯示/隱藏載入狀態
